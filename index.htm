@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Edu demo</title>
+    <style>
+        .pad{
+           text-align: center;
+        }
+        .ff{
+            margin-left: 20px;
+        }
+    </style>
+  </head>
+  <body class="bg-warning">
+      
+    <div class="pad"><label for="myText">Height of ball in Meters:</label>
+
+    <input type="number" id="myText" value="10">
+    <label for="myText" class="ff">Coeff of restitution * 100:</label>
+
+    <input type="range" id="vol" name="vol" min="0" max="100" value="25">
+
+
+   
+    
+    <button onclick="update()">Try it</button>
+    <button onclick="update1()">Bounces</button>
+</div>
+    
+    
+    
+    <script>
+ 
+    </script>
+    
+
+      <div class="jumbotron">
+
+    <div class="card">
+          <div class="card-body">
+    <canvas id="myChart"></canvas>
+</div></div>
+</div>
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+//var x=10;
+var x = document.getElementById("myText").value;
+var r= document.getElementById("vol").value;
+
+
+var s=[];
+var t=[];
+s[0]=x
+t[0]=0
+var count=1;
+
+
+   
+var count1=1;
+while(x>=0.0001)
+{   s[count1]=0
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1-1])/10)
+    count1++
+    x=r*x/100;
+    s[count1]=x
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1])/10)
+    count1++
+
+
+   
+}
+
+
+
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: t,
+            datasets: [{
+                label: 'Displacement Time Graph Of A Free Falling Ball  (D(meters)/T(secs))',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: s
+            }]
+        },
+    
+        // Configuration options go here
+        options: {
+            
+        }
+
+    });
+    function update()
+    {
+        var x = document.getElementById("myText").value;
+        var r= document.getElementById("vol").value;
+
+
+
+var s=[];
+var t=[];
+s[0]=x
+t[0]=0
+var count=1;
+
+
+   
+var count1=1;
+while(x>=0.0001)
+{   s[count1]=0
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1-1])/10)
+    count1++
+    x=r*x/100;
+    s[count1]=x
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1])/10)
+    count1++
+
+
+   
+}
+
+        chart.data.datasets[0].data=s
+        chart.data.labels=t
+
+        chart.update();
+       
+    };
+    function update1(){
+        var x = document.getElementById("myText").value;
+        var r= document.getElementById("vol").value;
+
+
+
+var s=[];
+var t=[];
+s[0]=x
+t[0]=0
+var count=1;
+
+
+   
+var count1=1;
+while(x>=0.0001)
+{   s[count1]=0
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1-1])/10)
+    count1++
+    x=r*x/100;
+    s[count1]=x
+    t[count1]=t[count1-1]+Math.sqrt((2*s[count1])/10)
+    count1++
+    count++;
+
+
+   
+}
+
+
+    document.write("Total number of bounces:-")
+document.write(count)};
+
+    
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
